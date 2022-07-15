@@ -138,14 +138,14 @@
                                 <?php foreach ($data_log as $row) : ?>
                                     <tr>
                                         <td>
-                                            <a href="<?= site_url('C_Home/editLog/' . $row->IdLog) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> </a>
+                                            <!-- <a href="<?= site_url('C_Home/editLog/' . $row['IdLog']) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> </a> -->
                                         </td>
-                                        <td><?= $row->Nama ?></td>
-                                        <td><?= $row->Kegiatan ?></td>
-                                        <td><?= $row->Deskripsi ?></td>
-                                        <td><?= $row->Tanggal ?></td>
-                                        <td><?= $row->Waktu ?></td>
-                                        <td><?= $row->Keterangan ?></td>
+                                        <td><?= $row['Nama'] ?></td>
+                                        <td><?= $row['Kegiatan'] ?></td>
+                                        <td><?= $row['Deskripsi'] ?></td>
+                                        <td><?= $row['Tanggal'] ?></td>
+                                        <td><?= $row['Waktu'] ?></td>
+                                        <td><?= $row['Keterangan'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

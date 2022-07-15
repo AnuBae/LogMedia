@@ -19,8 +19,8 @@
                     <div class="form-group row">
                         <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="hidden" class="form-control" id="IdMd" name="IdMd" value=" <?= $data_Anggota->IdMd; ?>">
-                            <input type="text" class="form-control" id="Nama" name="Nama" value=" <?= $data_Anggota->Nama; ?>">
+                            <input type="hidden" class="form-control" id="IdMd" name="IdMd" value="<?= $data_Anggota->IdMd; ?>">
+                            <input type="text" class="form-control" id="Nama" name="Nama" value="<?= $data_Anggota->Nama; ?>">
                             <small class="text-danger">
                                 <?php echo form_error('Nama') ?>
                             </small>

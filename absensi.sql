@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jul 2022 pada 15.57
+-- Waktu pembuatan: 15 Jul 2022 pada 18.11
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -32,10 +32,17 @@ CREATE TABLE `logact` (
   `IdMdLog` int(11) DEFAULT NULL,
   `Kegiatan` varchar(255) NOT NULL,
   `Deskripsi` text NOT NULL,
-  `Tanggal` varchar(11) DEFAULT NULL,
-  `Waktu` varchar(9) DEFAULT NULL,
-  `Keterangan` varchar(11) NOT NULL
+  `Tanggal` varchar(15) DEFAULT NULL,
+  `Waktu` varchar(11) DEFAULT NULL,
+  `Keterangan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `logact`
+--
+
+INSERT INTO `logact` (`IdLog`, `IdMdLog`, `Kegiatan`, `Deskripsi`, `Tanggal`, `Waktu`, `Keterangan`) VALUES
+(1, 1, 'Make a web app', 'Web app only for recording activity log', '15-07-2022', '06:15 am', 'Mulai');
 
 -- --------------------------------------------------------
 
@@ -60,7 +67,7 @@ INSERT INTO `media` (`IdMd`, `Nama`, `JenisKelamin`, `Alamat`, `NoHp`, `Email`) 
 (1, 'Rusmansyah', 'Laki-laki', 'Ponpes Hidayatullah Yogyakarta', '082179061973', 'rusman.putra.712@gmail.com'),
 (2, 'Rif\'at', 'Laki-laki', 'Jalanin aja dulu, nikahnya barokah', '098123479876', 'ngadul@mantap.com'),
 (3, 'Maknae Azzam', 'Perempuan', 'Jalan doang jadian kaga', '098712376152', 'mantapea@mantap.com'),
-(5, 'Anubae', 'Laki-laki', 'Jalan jalan euy, ok', '082179972662', 'anubae@mantap.com');
+(5, 'Anubae Ganteng', 'Laki-laki', 'Jalan jalan euy, ok', '082179972662', 'anubae@mantap.com');
 
 --
 -- Indexes for dumped tables
@@ -87,13 +94,13 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT untuk tabel `logact`
 --
 ALTER TABLE `logact`
-  MODIFY `IdLog` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `media`
 --
 ALTER TABLE `media`
-  MODIFY `IdMd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdMd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

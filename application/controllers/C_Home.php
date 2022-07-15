@@ -51,13 +51,15 @@ class C_Home extends CI_Controller
     public function addLog($id = null)
     {
         if (!isset($id)) redirect('C_Home');
+        // if (!isset($id)) "ID";
 
-        $Absensi = $this->Absensi_model; //objek model
-        $validation = $this->form_validation; //objek form validation
-        $validation->set_rules($Absensi->rules()); //menerapkan rules validasi pada Absensi_model
+        $Absensi = $this->Absensi_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($Absensi->rules());
 
         //kondisi jika semua kolom telah divalidasi, maka akan menjalankan method save pada Absensi_model
         if ($validation->run()) {
+
             $Absensi->updateLog();
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data Log Anggota Media berhasil disimpan. 
@@ -65,7 +67,9 @@ class C_Home extends CI_Controller
             <span aria-hidden="true">&times;</span>
             </button></div>');
             redirect("C_Home");
+            // echo "insert";
         }
+
         $data["title"] = "Tambah Data Log Anggota";
         $data["data_Anggota"] = $Absensi->getById($id);
         if (!$data["data_Anggota"]) show_404();

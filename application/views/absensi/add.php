@@ -19,7 +19,7 @@
                     <div class="form-group row">
                         <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Nama" name="Nama" value=" <?= set_value('Nama'); ?>">
+                            <input type="text" class="form-control" id="Nama" name="Nama" value="<?= set_value('Nama'); ?>">
                             <small class="text-danger">
                                 <?php echo form_error('Nama') ?>
                             </small>
