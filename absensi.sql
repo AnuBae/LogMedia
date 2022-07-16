@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jul 2022 pada 18.11
+-- Waktu pembuatan: 16 Jul 2022 pada 04.09
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -42,7 +42,8 @@ CREATE TABLE `logact` (
 --
 
 INSERT INTO `logact` (`IdLog`, `IdMdLog`, `Kegiatan`, `Deskripsi`, `Tanggal`, `Waktu`, `Keterangan`) VALUES
-(1, 1, 'Make a web app', 'Web app only for recording activity log', '15-07-2022', '06:15 am', 'Mulai');
+(1, 1, 'Make a web app', 'Web app only for recording activity log', '15-07-2022', '06:15 am', 'Mulai'),
+(2, 1, 'Make a web app', 'Web for only recording media team activity', '16-07-2022', '09:05 am', 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -66,8 +67,7 @@ CREATE TABLE `media` (
 INSERT INTO `media` (`IdMd`, `Nama`, `JenisKelamin`, `Alamat`, `NoHp`, `Email`) VALUES
 (1, 'Rusmansyah', 'Laki-laki', 'Ponpes Hidayatullah Yogyakarta', '082179061973', 'rusman.putra.712@gmail.com'),
 (2, 'Rif\'at', 'Laki-laki', 'Jalanin aja dulu, nikahnya barokah', '098123479876', 'ngadul@mantap.com'),
-(3, 'Maknae Azzam', 'Perempuan', 'Jalan doang jadian kaga', '098712376152', 'mantapea@mantap.com'),
-(5, 'Anubae Ganteng', 'Laki-laki', 'Jalan jalan euy, ok', '082179972662', 'anubae@mantap.com');
+(3, 'Maknae Azzam', 'Perempuan', 'Jalan doang jadian kaga', '098712376152', 'mantapea@mantap.com');
 
 --
 -- Indexes for dumped tables
@@ -94,7 +94,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT untuk tabel `logact`
 --
 ALTER TABLE `logact`
-  MODIFY `IdLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `media`

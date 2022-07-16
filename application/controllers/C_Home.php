@@ -50,25 +50,16 @@ class C_Home extends CI_Controller
 
     public function addLog($id = null)
     {
-        if (!isset($id)) redirect('C_Home');
-        // if (!isset($id)) "ID";
-
-        $Absensi = $this->Absensi_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($Absensi->rules());
-
-        //kondisi jika semua kolom telah divalidasi, maka akan menjalankan method save pada Absensi_model
-        if ($validation->run()) {
-
-            $Absensi->updateLog();
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data Log Anggota Media berhasil disimpan. 
+        if (!isset($id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Data Anggota Media tidak ditemukan. 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button></div>');
-            redirect("C_Home");
-            // echo "insert";
+            redirect('C_Home');
         }
+
+        $Absensi = $this->Absensi_model;
 
         $data["title"] = "Tambah Data Log Anggota";
         $data["data_Anggota"] = $Absensi->getById($id);
@@ -77,6 +68,37 @@ class C_Home extends CI_Controller
         $this->load->view('templates/menu');
         $this->load->view('absensi/addLog', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function fungsiAddLog()
+    {
+        $data = array(
+            "IdMdLog" => $this->input->post('IdMdLog'),
+            "Kegiatan" => $this->input->post('Kegiatan'),
+            "Deskripsi" => $this->input->post('Deskripsi'),
+            "Tanggal" => $this->input->post('Tanggal'),
+            "Waktu" => $this->input->post('Waktu'),
+            "Keterangan" => $this->input->post('Keterangan')
+        );
+
+        foreach ($data as $value) {
+            if ($value == "") {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Tolong lengkapi form data log. 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button></div>');
+                redirect("C_Home/addLog/" . $data['IdMdLog']);
+            }
+        }
+
+        $this->Absensi_model->updateLog($data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Data Anggota Media berhasil disimpan. 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect("C_Home");
     }
 
     public function edit($id = null)

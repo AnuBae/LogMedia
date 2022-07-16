@@ -92,16 +92,8 @@ class M_Absensi extends CI_Model
     }
 
     //add data Log
-    public function updateLog()
+    public function updateLog($data)
     {
-        $data = array(
-            "IdMdLog" => $this->input->post('IdMdLog'),
-            "Kegiatan" => $this->input->post('Kegiatan'),
-            "Deskripsi" => $this->input->post('Deskripsi'),
-            "Tanggal" => $this->input->post('Tanggal'),
-            "Waktu" => $this->input->post('Waktu'),
-            "Keterangan" => $this->input->post('Keterangan')
-        );
         return $this->db->insert($this->table2, $data);
     }
 

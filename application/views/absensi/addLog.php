@@ -9,14 +9,21 @@
     </nav>
     <div class="row">
         <div class="col-md-12">
+            <div mb-2>
+                <!-- Menampilkan flashh data (pesan saat data berhasil disimpan)-->
+                <?php if ($this->session->flashdata('message')) :
+                    echo $this->session->flashdata('message');
+                endif; ?>
+            </div>
+
             <div class="card">
                 <div class="card-body">
                     <!-- <?php
                             //create form
                             $attributes = array('id' => 'FrmAddLog', 'method' => "post", "autocomplete" => "off");
-                            echo form_open('', $attributes);
+                            echo form_open('C_Home/fungsiAddLog', $attributes);
                             ?> -->
-                    <form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send">
+                    <form method="post" accept-charset="utf-8" action="<?= base_url('C_Home/fungsiAddLog'); ?>">
                         <div class="form-group row">
                             <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-10">
