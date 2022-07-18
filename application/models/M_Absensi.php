@@ -61,7 +61,7 @@ class M_Absensi extends CI_Model
     public function getLogActivity()
     {
         // return $this->db->get('logactivity')->result_array();
-        $sql = "SELECT logact.*, media.Nama FROM logact LEFT JOIN media on logact.IdMdLog = media.IdMd ORDER BY logact.IdLog";
+        $sql = "SELECT logact.*, media.Nama FROM logact LEFT JOIN media on logact.IdMdLog = media.IdMd ORDER BY logact.Tanggal DESC, logact.Waktu DESC";
         return $this->db->query($sql)->result_array();
     }
 

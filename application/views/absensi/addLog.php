@@ -23,7 +23,7 @@
                             $attributes = array('id' => 'FrmAddLog', 'method' => "post", "autocomplete" => "off");
                             echo form_open('C_Home/fungsiAddLog', $attributes);
                             ?> -->
-                    <form method="post" accept-charset="utf-8" action="<?= base_url('C_Home/fungsiAddLog'); ?>">
+                    <form class="pb-5" method="post" accept-charset="utf-8" action="<?= base_url('C_Home/fungsiAddLog'); ?>">
                         <div class="form-group row">
                             <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-10">

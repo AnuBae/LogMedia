@@ -39,7 +39,7 @@ class C_Home extends CI_Controller
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button></div>');
-            redirect("C_Home");
+            redirect(base_url());
         }
         $data["title"] = "Tambah Data Anggota";
         $this->load->view('templates/header', $data);
@@ -98,7 +98,7 @@ class C_Home extends CI_Controller
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect("C_Home");
+        redirect(base_url());
     }
 
     public function edit($id = null)
@@ -116,7 +116,7 @@ class C_Home extends CI_Controller
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button></div>');
-            redirect("C_Home");
+            redirect(base_url());
         }
         $data["title"] = "Edit Data Anggota";
         $data["data_Anggota"] = $Absensi->getById($id);
