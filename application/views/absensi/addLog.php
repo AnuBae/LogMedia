@@ -59,17 +59,29 @@
                             <label for="TanggalWaktu" class="col-sm-2 col-form-label">Tanggal - Waktu</label>
                             <?php date_default_timezone_set("Asia/Jakarta"); ?>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="TanggalWaktu" name="Tanggal" value="<?= date("d-m-Y"); ?>" readonly>
+                                <!-- <input type="text" class="form-control" id="TanggalWaktu" name="Tanggal" value="<?= date("d-m-Y"); ?>" readonly> -->
+                                <input type="date" class="form-control" id="TanggalWaktu" name="Tanggal">
                                 <small class="text-danger">
                                     <?php echo form_error('Tanggal') ?>
                                 </small>
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="TanggalWaktu" name="Waktu" value="<?= date("H:i a"); ?>" readonly>
+                                <!-- <input type="text" class="form-control" id="TanggalWaktu" name="Waktu" value="<?= date("H:i a"); ?>" readonly> -->
+                                <input type="time" class="form-control" id="TanggalWaktu" name="Waktu">
                                 <small class="text-danger">
                                     <?php echo form_error('Waktu') ?>
                                 </small>
                             </div>
+                            <script>
+                                // inisialisasi data
+                                var now = new Date();
+                                var inputElementTime = document.getElementsByName("Waktu")[0];
+                                var inputElementDate = document.getElementsByName("Tanggal")[0];
+
+                                // auto fill
+                                inputElementTime.value = ("0" + now.getHours()).slice(-2) + ":" + ("0" + now.getMinutes()).slice(-2);
+                                inputElementDate.value = now.getUTCFullYear() + "-" + ("0" + (1 + now.getMonth())).slice(-2) + "-" + ("0" + now.getDate()).slice(-2);
+                            </script>
                         </div>
 
                         <fieldset class="form-group">

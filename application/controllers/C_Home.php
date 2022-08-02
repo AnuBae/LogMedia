@@ -25,29 +25,6 @@ class C_Home extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function add()
-    {
-        // FrmAddMedia
-        $Absensi = $this->Absensi_model; //objek model
-        $validation = $this->form_validation; //objek form validation
-        $validation->set_rules($Absensi->rules()); //menerapkan rules validasi pada Absensi_model
-        //kondisi jika semua kolom telah divalidasi, maka akan menjalankan method save pada Absensi_model
-        if ($validation->run()) {
-            $Absensi->save();
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data Anggota Media berhasil disimpan. 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button></div>');
-            redirect(base_url());
-        }
-        $data["title"] = "Tambah Data Anggota";
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu');
-        $this->load->view('absensi/add', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function addLog($id = null)
     {
         if (!isset($id)) {
@@ -92,6 +69,12 @@ class C_Home extends CI_Controller
             }
         }
 
+        // kasih pembagian pm am
+        $n = date('a', strtotime($data["Waktu"]));
+        $data["Waktu"] = $data["Waktu"] . " " . $n;
+        // ubah format tanggal
+        $data["Tanggal"] = date("Y-m-d", strtotime($data["Tanggal"]));
+
         $this->Absensi_model->updateLog($data);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         Data Anggota Media berhasil disimpan. 
@@ -101,43 +84,32 @@ class C_Home extends CI_Controller
         redirect(base_url());
     }
 
-    public function edit($id = null)
+    public function edit()
     {
-        if (!isset($id)) redirect('C_Home');
+        $data["data_log"] = $this->Absensi_model->getLogActivity();
 
-        $Absensi = $this->Absensi_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($Absensi->rules());
+        foreach ($data["data_log"] as $val) {
+            if (!$this->validateDate($val["Tanggal"], 'Y-m-d')) {
+                $date = DateTime::createFromFormat('d-m-Y', $val["Tanggal"]);
+                $data = array(
+                    'Tanggal' => $date->format('Y-m-d')
+                );
 
-        if ($validation->run()) {
-            $Absensi->update();
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data Anggota Media berhasil diedit.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button></div>');
-            redirect(base_url());
+                $this->db->where('IdLog', $val["IdLog"]);
+                $this->db->update('logact', $data);
+                // Produces:
+                //
+                //      UPDATE mytable
+                //      SET title = '{$title}', name = '{$name}', date = '{$date}'
+                //      WHERE id = $id
+            }
         }
-        $data["title"] = "Edit Data Anggota";
-        $data["data_Anggota"] = $Absensi->getById($id);
-        if (!$data["data_Anggota"]) show_404();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu');
-        $this->load->view('Absensi/edit', $data);
-        $this->load->view('templates/footer');
+        redirect(base_url());
     }
 
-    public function delete()
+    function validateDate($date, $format = 'Y-m-d H:i:s')
     {
-        $id = $this->input->get('id');
-        if (!isset($id)) show_404();
-        $this->Absensi_model->delete($id);
-        $msg['success'] = true;
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        Data Anggota Media berhasil dihapus.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button></div>');
-        $this->output->set_output(json_encode($msg));
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
     }
 }

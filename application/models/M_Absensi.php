@@ -61,45 +61,13 @@ class M_Absensi extends CI_Model
     public function getLogActivity()
     {
         // return $this->db->get('logactivity')->result_array();
-        $sql = "SELECT logact.*, media.Nama FROM logact LEFT JOIN media on logact.IdMdLog = media.IdMd ORDER BY logact.Tanggal DESC, logact.Waktu DESC";
+        $sql = "SELECT logact.*, media.Nama FROM logact LEFT JOIN media on logact.IdMdLog = media.IdMd ORDER BY logact.Waktu DESC";
         return $this->db->query($sql)->result_array();
-    }
-
-    //menyimpan data mahasiswa
-    public function save()
-    {
-        $data = array(
-            "Nama" => $this->input->post('Nama'),
-            "JenisKelamin" => $this->input->post('JenisKelamin'),
-            "Alamat" => $this->input->post('Alamat'),
-            "NoHp" => $this->input->post('NoHp'),
-            "Email" => $this->input->post('Email')
-        );
-        return $this->db->insert($this->table, $data);
-    }
-
-    //edit data mahasiswa
-    public function update()
-    {
-        $data = array(
-            "Nama" => $this->input->post('Nama'),
-            "JenisKelamin" => $this->input->post('JenisKelamin'),
-            "Alamat" => $this->input->post('Alamat'),
-            "NoHp" => $this->input->post('NoHp'),
-            "Email" => $this->input->post('Email')
-        );
-        return $this->db->update($this->table, $data, array('IdMd' => $this->input->post('IdMd')));
     }
 
     //add data Log
     public function updateLog($data)
     {
         return $this->db->insert($this->table2, $data);
-    }
-
-    //hapus data mahasiswa
-    public function delete($id)
-    {
-        return $this->db->delete($this->table, array("IdMd" => $id));
     }
 }
